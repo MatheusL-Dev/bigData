@@ -1,8 +1,11 @@
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import preprocessing
+import graphviz
+from sklearn.tree import export_graphviz
 
-data = pd.read_csv(f'../base_de_dados/iris.data')
+
+data = pd.read_csv('../base_de_dados/iris.data')
 
 # Pré-processamento dos dados
 data = data.dropna()  # Remover linhas com valores ausentes
@@ -20,9 +23,6 @@ model = DecisionTreeClassifier()
 
 # Treinar o modelo
 model.fit(X, y)
-
-import graphviz
-from sklearn.tree import export_graphviz
 
 # Exportar a estrutura da árvore de decisão em formato DOT
 dot_data = export_graphviz(model, out_file=None, feature_names=X.columns, class_names=le.classes_, filled=True, rounded=True)

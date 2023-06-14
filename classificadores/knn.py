@@ -3,7 +3,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
-data = pd.read_csv(f'../base_de_dados/iris.data')
+
+data = pd.read_csv('../base_de_dados/iris.data')
 
 # Pré-processamento dos dados
 data = data.dropna()  # Remover linhas com valores ausentes
@@ -12,15 +13,11 @@ data = data.dropna()  # Remover linhas com valores ausentes
 X = data.drop('class', axis=1)
 y = data['class']
 
-# Separar as features (características) e os rótulos (classes)
-X = data.iloc[:, :-1]  # Features
-y = data.iloc[:, -1]   # Rótulos
-
 # Dividir os dados em conjunto de treinamento e conjunto de teste
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=32)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=51)
 
 # Criar o modelo kNN e treiná-lo
-k = 3  # Número de vizinhos
+k = 7  # Número de vizinhos
 knn = KNeighborsClassifier(n_neighbors=k)
 knn.fit(X_train, y_train)
 
